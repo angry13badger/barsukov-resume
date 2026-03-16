@@ -15,9 +15,6 @@
             --bg: #f8fafc;
             --surface: #ffffff;
             --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --green: #059669;
-            --green-bg: #ecfdf5;
-            --blue-bg: #eff6ff;
         }
 
         body {
@@ -27,7 +24,7 @@
             background: var(--bg);
         }
 
-        .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
         /* Header */
         header {
@@ -48,7 +45,7 @@
         @keyframes shimmer { 0%, 100% { transform: scale(1); opacity: 0.6; } 50% { transform: scale(1.15); opacity: 0.9; } }
         .header-inner { position: relative; z-index: 1; }
         h1 { font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 700; margin-bottom: 12px; text-shadow: 0 2px 8px rgba(0,0,0,0.15); }
-        .tagline { font-size: 1.25rem; opacity: 0.95; margin-bottom: 16px; font-weight: 400; }
+        .tagline { font-size: 1.25rem; opacity: 0.95; margin-bottom: 20px; font-weight: 400; }
         .badge {
             display: inline-block;
             background: rgba(255,255,255,0.2);
@@ -93,7 +90,7 @@
         section:nth-child(even) { background: var(--surface); }
         h2 {
             font-size: 1.85rem;
-            margin-bottom: 40px;
+            margin-bottom: 36px;
             text-align: center;
             color: var(--text);
             position: relative;
@@ -116,12 +113,7 @@
         .about a:hover { text-decoration: underline; }
 
         /* Skills */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-            margin-top: 40px;
-        }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px; }
         .skill-card {
             background: var(--surface);
             padding: 28px 24px;
@@ -137,79 +129,164 @@
         .skill-card li { padding: 6px 0; padding-left: 22px; position: relative; }
         .skill-card li::before { content: '✓'; position: absolute; left: 0; color: var(--primary); font-weight: bold; }
 
-        /* Experience — company blocks */
-        .company-block {
-            background: var(--surface);
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.07);
-            padding: 36px;
-            margin-bottom: 36px;
-            border-left: 4px solid var(--primary);
+        /* Timeline */
+        .timeline { max-width: 860px; margin: 0 auto; position: relative; padding: 24px 0; }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%; top: 0; bottom: 0;
+            width: 2px;
+            background: var(--gradient);
+            transform: translateX(-50%);
         }
-        .company-header { margin-bottom: 20px; }
-        .company-header h3 { font-size: 1.5rem; color: var(--primary); margin-bottom: 6px; }
-        .company-meta { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 10px; }
-        .company-desc { color: var(--text); font-size: 1rem; line-height: 1.7; padding: 14px 16px; background: var(--bg); border-radius: 8px; margin-bottom: 24px; }
-
-        /* Project cards within company */
-        .projects-title { font-size: 1rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px; }
-        .project-card {
-            border: 1px solid #e5e7eb;
-            border-radius: 10px;
-            padding: 20px 22px;
-            margin-bottom: 14px;
+        .tl-item { display: flex; margin-bottom: 48px; position: relative; }
+        .tl-item:nth-child(odd)  { flex-direction: row; }
+        .tl-item:nth-child(even) { flex-direction: row-reverse; }
+        .tl-content {
+            background: var(--surface);
+            padding: 24px 22px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            width: 46%;
+            position: relative;
             transition: box-shadow 0.2s;
         }
-        .project-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
-        .project-card h4 { font-size: 1.05rem; color: var(--text); margin-bottom: 12px; display: flex; align-items: flex-start; gap: 8px; }
-        .project-card h4::before { content: '▸'; color: var(--primary); font-size: 0.9rem; margin-top: 2px; flex-shrink: 0; }
-        .task-list { list-style: none; margin-bottom: 0; }
+        .tl-content:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.10); }
+        .tl-item:nth-child(odd)  .tl-content { margin-right: auto; }
+        .tl-item:nth-child(even) .tl-content { margin-left: auto; }
+        .tl-dot {
+            position: absolute;
+            left: 50%; transform: translateX(-50%);
+            width: 14px; height: 14px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 3px solid var(--surface);
+            box-shadow: 0 0 0 2px var(--primary);
+            z-index: 1;
+        }
+        .tl-content h3 { color: var(--primary); font-size: 1.15rem; margin-bottom: 6px; }
+        .tl-meta { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 10px; line-height: 1.4; }
+        .tl-desc { color: var(--text); font-size: 0.92rem; line-height: 1.55; }
+
+        /* Project list in timeline card */
+        .proj-list {
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px solid #e5e7eb;
+        }
+        .proj-list-title {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+        }
+
+        /* Individual project item — hover to expand */
+        .proj {
+            padding: 7px 8px;
+            border-radius: 7px;
+            margin-bottom: 2px;
+            border: 1px solid transparent;
+            transition: background 0.15s, border-color 0.15s;
+        }
+        .proj:hover {
+            background: #eff6ff;
+            border-color: #bfdbfe;
+        }
+        .proj-name {
+            display: flex;
+            align-items: flex-start;
+            gap: 7px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--text);
+            cursor: default;
+            user-select: none;
+        }
+        .proj-emoji { flex-shrink: 0; line-height: 1.5; }
+        .proj-label { flex: 1; }
+        .proj-arrow {
+            flex-shrink: 0;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            transition: transform 0.25s, color 0.15s;
+            line-height: 1.8;
+            margin-left: 4px;
+        }
+        .proj:hover .proj-arrow { transform: rotate(90deg); color: var(--primary); }
+
+        /* Expandable details */
+        .proj-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.45s ease;
+        }
+        .proj:hover .proj-details { max-height: 2000px; }
+        .proj-details-inner { padding: 8px 0 4px 26px; }
+
+        .task-list { list-style: none; }
         .task-list li {
             color: var(--text-muted);
-            font-size: 0.92rem;
-            padding: 5px 0 5px 20px;
+            font-size: 0.83rem;
+            padding: 3px 0 3px 14px;
             position: relative;
-            line-height: 1.55;
+            line-height: 1.5;
         }
         .task-list li::before { content: '—'; position: absolute; left: 0; color: #d1d5db; }
 
-        /* Results block */
         .results-block {
-            margin-top: 14px;
-            padding: 14px 16px;
-            background: var(--green-bg);
-            border-radius: 8px;
-            border-left: 3px solid var(--green);
+            margin-top: 8px;
+            padding: 8px 12px;
+            background: #ecfdf5;
+            border-radius: 6px;
+            border-left: 3px solid #059669;
         }
-        .results-block .results-title { font-size: 0.85rem; font-weight: 600; color: var(--green); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px; }
+        .results-block .r-title {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #059669;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 5px;
+        }
         .results-block ul { list-style: none; }
-        .results-block li { font-size: 0.92rem; color: #065f46; padding: 3px 0 3px 18px; position: relative; }
-        .results-block li::before { content: '↑'; position: absolute; left: 0; color: var(--green); font-weight: bold; }
-
-        /* Links block */
-        .links-block {
-            margin-top: 10px;
-            padding: 10px 16px;
-            background: var(--blue-bg);
-            border-radius: 8px;
+        .results-block li {
+            font-size: 0.81rem;
+            color: #065f46;
+            padding: 2px 0 2px 14px;
+            position: relative;
         }
-        .links-block .links-title { font-size: 0.8rem; font-weight: 600; color: var(--primary); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
+        .results-block li::before { content: '↑'; position: absolute; left: 0; color: #059669; font-weight: bold; }
+
+        .links-block {
+            margin-top: 6px;
+            padding: 7px 12px;
+            background: #eff6ff;
+            border-radius: 6px;
+        }
+        .links-block .l-title {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 4px;
+        }
         .links-block ul { list-style: none; }
-        .links-block li { font-size: 0.88rem; padding: 2px 0; }
+        .links-block li { font-size: 0.8rem; padding: 2px 0; }
         .links-block a { color: var(--primary); text-decoration: none; }
         .links-block a:hover { text-decoration: underline; }
 
-        /* Award badge */
-        .award-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: #fff;
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 3px 10px;
-            border-radius: 999px;
-            margin-left: 8px;
-            vertical-align: middle;
+        .award { display: inline-block; background: linear-gradient(135deg, #f59e0b, #d97706); color: #fff; font-size: 0.68rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; margin-left: 5px; vertical-align: middle; }
+
+        /* Hint for hover */
+        .hover-hint {
+            font-size: 0.72rem;
+            color: #9ca3af;
+            margin-bottom: 6px;
+            font-style: italic;
         }
 
         /* Education & extras */
@@ -242,7 +319,14 @@
 
         @media (max-width: 768px) {
             section { padding: 48px 0; }
-            .company-block { padding: 24px 20px; }
+            .timeline::before { left: 16px; }
+            .tl-item { flex-direction: row !important; }
+            .tl-content { width: calc(100% - 48px); margin-left: 48px !important; margin-right: 0 !important; }
+            .tl-dot { left: 16px; }
+            /* On touch devices: tap to toggle */
+            .proj { cursor: pointer; }
+            .proj.open .proj-details { max-height: 2000px; }
+            .proj.open .proj-arrow { transform: rotate(90deg); color: var(--primary); }
         }
 
         html { scroll-behavior: smooth; }
@@ -256,7 +340,7 @@
             <h1>Михаил Барсуков</h1>
             <p class="tagline">Product & Project Manager — подробное резюме</p>
             <span class="badge">16+ лет в банковской и страховой сферах</span>
-            <span class="badge">Все проекты и задачи</span>
+            <span class="badge">Наведите на проект — раскроются детали</span>
         </div>
     </div>
 </header>
@@ -289,10 +373,10 @@
                 До этого 6 лет — продукты и сервисы в <span class="highlight">«Почта Банк Онлайн»</span>, в проекте по созданию дистанционных каналов с первого дня.
             </p>
             <p>
-                Ранее: Лето Банк (комиссионный бизнес), Банк Русский Стандарт (виртуальные карты в дистанционных каналах),
-                ОТП Банк (кредиты для малого бизнеса), Кредит Европа Банк (автокредитование для МСБ).
+                Ранее: Лето Банк (комиссионный бизнес), Банк Русский Стандарт (виртуальные карты),
+                ОТП Банк (кредиты для МСБ), Кредит Европа Банк (автокредитование для МСБ).
             </p>
-            <p style="margin-top:20px; color: #374151; font-size: 0.95rem;">40 лет, женат, 1 ребёнок</p>
+            <p style="margin-top:20px; color:#374151; font-size:0.95rem;">40 лет, женат, 1 ребёнок</p>
         </div>
     </div>
 </section>
@@ -319,7 +403,7 @@
                 <h3>Аналитика</h3>
                 <ul>
                     <li>Data driven принятие решений</li>
-                    <li>Amplitude, AppMetrica, AppsFlyer, Firebase, Яндекс Метрика</li>
+                    <li>Amplitude, AppMetrica, AppsFlyer, Firebase</li>
                     <li>Построение воронок, дашбордов, adhoc-аналитика</li>
                     <li>Inhouse решения для аналитики и кампаний</li>
                 </ul>
@@ -350,7 +434,7 @@
                 <h3>CRM и маркетинг</h3>
                 <ul>
                     <li>CRM-кампании, real-time маркетинг (SAS RTM)</li>
-                    <li>Push-уведомления, реферальные программы</li>
+                    <li>Push, реферальные программы</li>
                     <li>Таргетированные предложения в ДБО</li>
                     <li>Stories, Chatheads, deeplink-механики</li>
                 </ul>
@@ -362,7 +446,7 @@
                     <li>Работа с аутсорс-подрядчиками (до 4 команд)</li>
                     <li>Постановка требований, приёмка, запуск</li>
                     <li>Публикация в App Store, Google Play, ruStore, NashStore</li>
-                    <li>Fraud prevention, соответствие 161-ФЗ / 152-ФЗ</li>
+                    <li>Fraud prevention, 161-ФЗ / 152-ФЗ</li>
                 </ul>
             </div>
         </div>
@@ -374,427 +458,530 @@
     <div class="container">
         <h2>Опыт работы</h2>
 
-        <!-- СК Пульс / Росгосстрах -->
-        <div class="company-block">
-            <div class="company-header">
-                <h3>СК Пульс / Росгосстрах</h3>
-                <div class="company-meta">Руководитель направления цифровых каналов, CPO мобильного приложения &nbsp;·&nbsp; ноябрь 2021 — январь 2026</div>
-            </div>
-            <div class="company-desc">
-                Запуск мобильного приложения с нуля. За время работы внедрено большое количество фич, которые в совокупности позволили улучшить воронки продаж почти в 2 раза.
-            </div>
+        <div class="timeline">
 
-            <div class="projects-title">Проекты</div>
+            <!-- СК Пульс -->
+            <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div class="tl-content">
+                    <h3>СК Пульс / Росгосстрах</h3>
+                    <p class="tl-meta">Руководитель направления цифровых каналов, CPO мобильного приложения<br>ноябрь 2021 — январь 2026</p>
+                    <p class="tl-desc">Запуск мобильного приложения с нуля. Внедрено много фич — воронки продаж выросли почти в 2 раза.</p>
+                    <div class="proj-list">
+                        <div class="proj-list-title">Проекты — наведите для деталей</div>
 
-            <div class="project-card">
-                <h4>Запуск мобильного приложения «Пульс Жизни»</h4>
-                <ul class="task-list">
-                    <li>Запуск мобильного приложения СК Пульс с нулевой стадии</li>
-                    <li>Проработка UX сценариев и построение Customer Journey Map</li>
-                    <li>Постановка и согласование требований к реализации продающего функционала</li>
-                    <li>Взаимодействие с аутсорс-подрядчиками</li>
-                    <li>Анализ функциональных требований</li>
-                    <li>Приёмка функционала и его запуск в промышленную эксплуатацию</li>
-                    <li>Оформление developer-аккаунтов и публикация приложений в Google Play, App Store, ruStore, ruMarket, NashStore</li>
-                </ul>
-            </div>
+                        <div class="proj">
+                            <div class="proj-name">
+                                <span class="proj-emoji">📱</span>
+                                <span class="proj-label">Запуск мобильного приложения «Пульс Жизни»</span>
+                                <span class="proj-arrow">▸</span>
+                            </div>
+                            <div class="proj-details"><div class="proj-details-inner">
+                                <ul class="task-list">
+                                    <li>Запуск приложения СК Пульс с нулевой стадии</li>
+                                    <li>Проработка UX сценариев и построение CJM</li>
+                                    <li>Постановка и согласование требований к продающему функционалу</li>
+                                    <li>Взаимодействие с аутсорс-подрядчиками</li>
+                                    <li>Анализ функциональных требований, приёмка, запуск в эксплуатацию</li>
+                                    <li>Публикация в Google Play, App Store, ruStore, ruMarket, NashStore</li>
+                                </ul>
+                            </div></div>
+                        </div>
 
-            <div class="project-card">
-                <h4>Внедрение систем клиентской и маркетинговой аналитики</h4>
-                <ul class="task-list">
-                    <li>Построение с нуля системы сбора аналитики через Amplitude и AppMetrica</li>
-                    <li>Сбор и систематизация более 150 событий по действиям клиентов в приложении и источникам трафика</li>
-                    <li>Подключение AppsFlyer для атрибуции маркетинговых каналов</li>
-                </ul>
-            </div>
+                        <div class="proj">
+                            <div class="proj-name">
+                                <span class="proj-emoji">📊</span>
+                                <span class="proj-label">Аналитика: Amplitude, AppMetrica, AppsFlyer</span>
+                                <span class="proj-arrow">▸</span>
+                            </div>
+                            <div class="proj-details"><div class="proj-details-inner">
+                                <ul class="task-list">
+                                    <li>Построение системы сбора аналитики с нуля</li>
+                                    <li>150+ событий по действиям клиентов и источникам трафика</li>
+                                    <li>Построение воронок и управленческих дашбордов для ежедневного анализа</li>
+                                    <li>Adhoc-аналитика при нестандартном поведении метрик</li>
+                                </ul>
+                            </div></div>
+                        </div>
 
-            <div class="project-card">
-                <h4>Воронки продаж и управленческие дашборды</h4>
-                <ul class="task-list">
-                    <li>Построение воронок и дашбордов в Amplitude, AppMetrica, AppsFlyer</li>
-                    <li>Ежедневный анализ поведения пользователей, работы новых фич, перераспределения трафика</li>
-                    <li>Adhoc-аналитика при нестандартном поведении метрик</li>
-                </ul>
-            </div>
+                        <div class="proj">
+                            <div class="proj-name">
+                                <span class="proj-emoji">📣</span>
+                                <span class="proj-label">CRM-кампании в мобильном приложении</span>
+                                <span class="proj-arrow">▸</span>
+                            </div>
+                            <div class="proj-details"><div class="proj-details-inner">
+                                <ul class="task-list">
+                                    <li>Запуск автоматизированных догоняющих кампаний через AppMetrica</li>
+                                    <li>Сегментация и триггеры на основе поведения пользователей</li>
+                                </ul>
+                            </div></div>
+                        </div>
 
-            <div class="project-card">
-                <h4>CRM-кампании в мобильном приложении</h4>
-                <ul class="task-list">
-                    <li>Запуск автоматизированных догоняющих кампаний через AppMetrica</li>
-                    <li>Настройка сегментации и триггеров на основе поведения пользователей</li>
-                </ul>
-            </div>
+                        <div class="proj">
+                            <div class="proj-name">
+                                <span class="proj-emoji">🎯</span>
+                                <span class="proj-label">Система мотивации сотрудников</span>
+                                <span class="proj-arrow">▸</span>
+                            </div>
+                            <div class="proj-details"><div class="proj-details-inner">
+                                <ul class="task-list">
+                                    <li>KPI на основе улучшения воронки в app и web</li>
+                                </ul>
+                                <div class="results-block">
+                                    <div class="r-title">Результат</div>
+                                    <ul><li>Прирост конверсии 10–20% квартал к кварталу</li></ul>
+                                </div>
+                            </div></div>
+                        </div>
 
-            <div class="project-card">
-                <h4>Система мотивации сотрудников</h4>
-                <ul class="task-list">
-                    <li>Разработка механизма KPI на основе улучшения воронки в app и web</li>
-                    <li>Относительный прирост конверсии от квартала к кварталу 10–20%</li>
-                </ul>
-                <div class="results-block">
-                    <div class="results-title">Результат</div>
-                    <ul><li>Прирост конверсии 10–20% квартал к кварталу</li></ul>
+                        <div class="proj">
+                            <div class="proj-name">
+                                <span class="proj-emoji">👥</span>
+                                <span class="proj-label">Реферальная программа MgM</span>
+                                <span class="proj-arrow">▸</span>
+                            </div>
+                            <div class="proj-details"><div class="proj-details-inner">
+                                <ul class="task-list">
+                                    <li>Методология оценки и учёта продаж, приведённых сотрудниками</li>
+                                    <li>Запуск реферальной программы для всей компании</li>
+                                    <li>Управленческий дашборд для визуализации результатов конкурса</li>
+                                </ul>
+                            </div></div>
+                        </div>
+
+                        <div class="proj">
+                            <div class="proj-name">
+                                <span class="proj-emoji">🧪</span>
+                                <span class="proj-label">A/B/C тесты в мобильном приложении</span>
+                                <span class="proj-arrow">▸</span>
+                            </div>
+                            <div class="proj-details"><div class="proj-details-inner">
+                                <ul class="task-list">
+                                    <li>Лёгковесное решение на базе EXPF Sigma для A/B/C тестов по контенту в клиентском пути</li>
+                                    <li>Быстрые эксперименты для выбора оптимального контента с максимальной конверсией</li>
+                                    <li>A/B тесты описания приложения в магазинах для улучшения конверсии в установку</li>
+                                </ul>
+                            </div></div>
+                        </div>
+
+                        <div class="proj">
+                            <div class="proj-name">
+                                <span class="proj-emoji">🤝</span>
+                                <span class="proj-label">«Цифровой агент» <span class="award">🏆 fin Award 2024</span></span>
+                                <span class="proj-arrow">▸</span>
+                            </div>
+                            <div class="proj-details"><div class="proj-details-inner">
+                                <ul class="task-list">
+                                    <li>Web-приложение для дистанционного заключения агентского договора</li>
+                                    <li>Оформление клиентам всей продуктовой линейки СК «Пульс» без БСО и выезда</li>
+                                    <li>Полностью бесконтактный процесс</li>
+                                </ul>
+                                <div class="links-block">
+                                    <div class="l-title">Ссылки</div>
+                                    <ul>
+                                        <li><a href="https://pulse.insure/agents/" target="_blank" rel="noopener">pulse.insure/agents</a></li>
+                                    </ul>
+                                </div>
+                            </div></div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
 
-            <div class="project-card">
-                <h4>Реферальная программа MgM для сотрудников</h4>
-                <ul class="task-list">
-                    <li>Разработка методологии оценки и способа учёта продаж, приведённых сотрудниками</li>
-                    <li>Запуск реферальной программы для всей компании</li>
-                    <li>Подготовка управленческого дашборда для визуализации результатов</li>
-                </ul>
-            </div>
+            <!-- Почта Банк -->
+            <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div class="tl-content">
+                    <h3>Почта Банк</h3>
+                    <p class="tl-meta">Руководитель продукта<br>сентябрь 2012 — ноябрь 2021</p>
+                    <p class="tl-desc">Диджитал и комиссионные продукты для физлиц. Дистанционные каналы банка с первого дня.</p>
+                    <div class="proj-list">
+                        <div class="proj-list-title">Проекты — наведите для деталей</div>
 
-            <div class="project-card">
-                <h4>A/B/C тесты в мобильном приложении</h4>
-                <ul class="task-list">
-                    <li>Внедрение лёгковесного решения на базе EXPF Sigma для A/B/C тестов по изменению контента в клиентском пути</li>
-                    <li>Быстрые эксперименты для выбора оптимального контента с максимальной конверсией</li>
-                    <li>A/B тесты на странице приложения в магазинах для улучшения конверсии в установку</li>
-                </ul>
-            </div>
+                        <div class="proj">
+                            <div class="proj-name">
+                                <span class="proj-emoji">📱</span>
+                                <span class="proj-label">Запуск мобильного приложения и интернет-банка</span>
+                                <span class="proj-arrow">▸</span>
+                            </div>
+                            <div class="proj-details"><div class="proj-details-inner">
+                                <ul class="task-list">
+                                    <li>Запуск мобильного приложения и интернет-банка с нуля</li>
+                                    <li>Проработка UX и omni-channel логики (мобильный банк, интернет-банк, банкоматы/терминалы)</li>
+                                    <li>Взаимодействие с 4 аутсорс-подрядчиками</li>
+                                    <li>Анализ требований, приёмка, запуск в эксплуатацию</li>
+                                </ul>
+                                <div class="results-block">
+                                    <div class="r-title">Markswebb 2016–2020</div>
+                                    <ul>
+                                        <li>2016: iOS — 3 место, Android — 5 место</li>
+                                        <li>2017: iOS — 3 место, Android — 4 место</li>
+                                        <li>2018: Android — 4 место, Интернет-банк — 4 место</li>
+                                        <li>2019: iOS — 4 место</li>
+                                        <li>2020: iOS — 4 место, Android — 5 место</li>
+                                    </ul>
+                                </div>
+                            </div></div>
+                        </div>
 
-            <div class="project-card">
-                <h4>«Цифровой агент» <span class="award-badge">🏆 fin Award 2024</span></h4>
-                <ul class="task-list">
-                    <li>Запуск web-приложения, позволяющего любому физическому лицу дистанционно заключить агентский договор</li>
-                    <li>Дистанционное оформление клиентам всей продуктовой линейки СК «Пульс» без использования БСО</li>
-                    <li>Полностью бесконтактный процесс — без выезда к клиенту</li>
-                </ul>
-                <div class="links-block">
-                    <div class="links-title">Ссылки</div>
-                    <ul>
-                        <li><a href="https://pulse.insure/agents/" target="_blank" rel="noopener">pulse.insure/agents — страница проекта</a></li>
-                        <li>Проект отмечен жюри премии fin Award 2024</li>
-                    </ul>
+                        <div class="proj">
+                            <div class="proj-name">
+                                <span class="proj-emoji">💬</span>
+                                <span class="proj-label">Единый канал коммуникаций (чат / push / SMS) <span class="award">🥈 Markswebb 2021</span></span>
+                                <span class="proj-arrow">▸</span>
+                            </div>
+                            <div class="proj-details"><div class="proj-details-inner">
+                                <ul class="task-list">
+                                    <li>Разработка концепции: вся история переписки клиента и банка в одном разделе</li>
+                                    <li>Замена коробочного решения ЦФТ на собственный чат-сервис</li>
+                                    <li>Гибкая сортировка сообщений по контексту</li>
+                                    <li>Голосовые сообщения в чате, предиктивные подсказки формулировок</li>
+                                    <li>Быстрые переходы в нужные разделы ДБО, автоматизация массовых тематик</li>
+                                    <li>Интеграция чат-бота с сервисами ДБО: персонализация и автоматизация частых запросов</li>
+                                    <li>Контекстный чат по любой маркетинговой коммуникации (push/SMS пересылается оператору)</li>
+                                    <li>Настраиваемый справочник частых вопросов с кнопками быстрых действий</li>
+                                    <li>Инициация чата со стороны банка, оценка качества консультации</li>
+                                    <li>Флаг прочтения сообщений в ДБО, метрики в Firebase</li>
+                                </ul>
+                                <div class="results-block">
+                                    <div class="r-title">Результаты</div>
+                                    <ul>
+                                        <li>3+ млн уникальных пользователей, 11+ млн обращений ежемесячно</li>
+                                        <li>10 тыс/мес чат-консультаций по CRM/маркетинговым сообщениям</li>
+                                        <li>Чат-бот полностью закрывает 13% всех обращений</li>
+                                    </ul>
+                                </div>
+                                <div class="links-block">
+                                    <div class="l-title">Ссылки</div>
+                                    <ul>
+                                        <li><a href="https://plusworld.ru/daily/banki-i-mfo/klienty-pochta-banka-smogut-ispolzovat-golosovye-soobshheniya-v-chate-mobilnogo-prilozheniya/" target="_blank" rel="noopener">Голосовые сообщения в чате — plusworld.ru</a></li>
+                                        <li><a href="https://markswebb.ru/report/chatbot-rank-2021/#banks" target="_blank" rel="noopener">Markswebb Chatbot Rank 2021 — 2-е место</a></li>
+                                    </ul>
+                                </div>
+                            </div></div>
+                        </div>
+
+                        <div class="proj">
+                            <div class="proj-name">
+                                <span class="proj-emoji">🔔</span>
+                                <span class="proj-label">Push-уведомления: доставка и читаемость</span>
+                                <span class="proj-arrow">▸</span>
+                            </div>
+                            <div class="proj-details"><div class="proj-details-inner">
+                                <ul class="task-list">
+                                    <li>Полный рефакторинг push-функционала в приложении</li>
+                                    <li>Гарантированная доставка, независимая от сервисов Apple / Google / Huawei</li>
+                                    <li>Chatheads — push поверх интерфейса любого приложения (как Facebook Messenger)</li>
+                                    <li>Признак «важности» сообщения: отображение поверх экрана авторизации</li>
+                                    <li>Дополнительный контент в push-уведомлениях</li>
+                                    <li>Единый механизм deeplink'ов для push / SMS / email</li>
+                                    <li>Счётчик непрочитанных, история push/SMS в неавторизованной зоне</li>
+                                </ul>
+                                <div class="results-block">
+                                    <div class="r-title">Результаты</div>
+                                    <ul>
+                                        <li>Подписка на push: 80% → 94%</li>
+                                        <li>Доставка push: 60% → 85%</li>
+                                        <li>Read rate — в два раза</li>
+                                    </ul>
+                                </div>
+                                <div class="links-block">
+                                    <div class="l-title">Ссылки</div>
+                                    <ul>
+                                        <li><a href="https://news.mail.ru/society/46639917/" target="_blank" rel="noopener">Chat heads в банковских приложениях — mail.ru</a></li>
+                                    </ul>
+                                </div>
+                            </div></div>
+                        </div>
+
+                        <div class="proj">
+                            <div class="proj-name">
+                                <span class="proj-emoji">💳</span>
+                                <span class="proj-label">Онлайн выдача кредитов</span>
+                                <span class="proj-arrow">▸</span>
+                            </div>
+                            <div class="proj-details"><div class="proj-details-inner">
+                                <ul class="task-list">
+                                    <li>Согласование и реализация полного бизнес-процесса дистанционного заключения кредитных договоров</li>
+                                    <li>Онлайн заключение договоров страхования в кредитном процессе</li>
+                                    <li>Автоматизация формирования юридически значимых документов</li>
+                                    <li>Интеграция запроса выписки из ПФР</li>
+                                    <li>Подача заявки в отделении + завершение выдачи в ДБО (в том числе для новых клиентов)</li>
+                                </ul>
+                                <div class="results-block">
+                                    <div class="r-title">Результаты</div>
+                                    <ul>
+                                        <li>20%+ кредитов выдаётся полностью онлайн</li>
+                                        <li>60%+ проникновение страховки по онлайн-выдачам</li>
+                                    </ul>
+                                </div>
+                                <div class="links-block">
+                                    <div class="l-title">Ссылки</div>
+                                    <ul>
+                                        <li><a href="https://www.pochtabank.ru/news/439298" target="_blank" rel="noopener">Запуск выдачи кредитов наличными в ДБО</a></li>
+                                        <li><a href="https://www.gazeta.ru/social/2020/03/27/13025419.shtml" target="_blank" rel="noopener">«Каждый третий кредит выдаётся через Почта Банк Онлайн» — Газета.ru</a></li>
+                                    </ul>
+                                </div>
+                            </div></div>
+                        </div>
+
+                        <div class="proj">
+                            <div class="proj-name">
+                                <span class="proj-emoji">🔗</span>
+                                <span class="proj-label">Интеграция ДБО с SAS ACRM / RTM <span class="award">🏆 Finaward 2018</span></span>
+                                <span class="proj-arrow">▸</span>
+                            </div>
+                            <div class="proj-details"><div class="proj-details-inner">
+                                <ul class="task-list">
+                                    <li>Интеграция ДБО с SAS ACRM: таргетированные предложения в мобильном и интернет-банке</li>
+                                    <li>Интеграция с SAS RTM: отправка 20+ событий по действиям пользователей в реальном времени</li>
+                                    <li>Отображение персонализированных предложений в ДБО на основе ACRM и RTM</li>
+                                </ul>
+                                <div class="results-block">
+                                    <div class="r-title">Результаты</div>
+                                    <ul>
+                                        <li>30%+ повторных CRM-продаж инициируется в Почта Банк Онлайн</li>
+                                    </ul>
+                                </div>
+                                <div class="links-block">
+                                    <div class="l-title">Ссылки</div>
+                                    <ul>
+                                        <li><a href="https://www.pochtabank.ru/news/575015" target="_blank" rel="noopener">Первыми в России интегрировали RTM с мобильным банком</a></li>
+                                        <li><a href="https://www.connect-wit.ru/pochta-bank-i-sas-voshli-v-trojku-luchshih-v-nominatsii-vnedrenie-v-sfere-vzaimodejstviya-s-klientami-premii-finaward-2018.html" target="_blank" rel="noopener">Топ-3 Finaward 2018</a></li>
+                                    </ul>
+                                </div>
+                            </div></div>
+                        </div>
+
+                        <div class="proj">
+                            <div class="proj-name">
+                                <span class="proj-emoji">🏠</span>
+                                <span class="proj-label">Счета ЖКУ без подписки клиента</span>
+                                <span class="proj-arrow">▸</span>
+                            </div>
+                            <div class="proj-details"><div class="proj-details-inner">
+                                <ul class="task-list">
+                                    <li>Механизм косвенного сопоставления адресов клиентов со счетами поставщиков ЖКУ</li>
+                                    <li>Клиенту не нужно указывать лицевой счёт — банк сам находит задолженность и уведомляет</li>
+                                </ul>
+                                <div class="results-block">
+                                    <div class="r-title">Результаты</div>
+                                    <ul>
+                                        <li>50 000+ клиентов / счетов ежемесячно</li>
+                                        <li>Прирост платежей 30%+ vs контрольная группа</li>
+                                    </ul>
+                                </div>
+                            </div></div>
+                        </div>
+
+                        <div class="proj">
+                            <div class="proj-name">
+                                <span class="proj-emoji">📄</span>
+                                <span class="proj-label">Скан-копии ранее подписанных документов</span>
+                                <span class="proj-arrow">▸</span>
+                            </div>
+                            <div class="proj-details"><div class="proj-details-inner">
+                                <ul class="task-list">
+                                    <li>Интеграция с внешним архивом банка (Делис Архив)</li>
+                                    <li>Получение скан-копий договоров клиентами дистанционно</li>
+                                </ul>
+                                <div class="results-block">
+                                    <div class="r-title">Результаты</div>
+                                    <ul>
+                                        <li>80% запросов на копию договора — в дистанционных каналах</li>
+                                        <li>2 000+ запросов ежемесячно</li>
+                                    </ul>
+                                </div>
+                            </div></div>
+                        </div>
+
+                        <div class="proj">
+                            <div class="proj-name">
+                                <span class="proj-emoji">📖</span>
+                                <span class="proj-label">Коммуникации в формате Stories</span>
+                                <span class="proj-arrow">▸</span>
+                            </div>
+                            <div class="proj-details"><div class="proj-details-inner">
+                                <ul class="task-list">
+                                    <li>Функционал в формате Instagram Stories внутри ДБО</li>
+                                    <li>Сервис взаимодействия внешних систем и ДБО для отправки stories</li>
+                                    <li>Альбом преднастроенных визуальных шаблонов</li>
+                                    <li>Панель администрирования для бизнес-пользователей без участия IT</li>
+                                </ul>
+                            </div></div>
+                        </div>
+
+                        <div class="proj">
+                            <div class="proj-name">
+                                <span class="proj-emoji">👶</span>
+                                <span class="proj-label">«Почта Банк. Младший» — приложение для детей 6–14 лет</span>
+                                <span class="proj-arrow">▸</span>
+                            </div>
+                            <div class="proj-details"><div class="proj-details-inner">
+                                <ul class="task-list">
+                                    <li>Запуск отдельного банковского приложения для детей с нуля</li>
+                                    <li>Юридическая схема выпуска виртуальной карты для несовершеннолетних</li>
+                                    <li>Управление лимитами детской карты в приложении родителя</li>
+                                    <li>Интеграция игровых механик для Кидс Сити</li>
+                                    <li>Бизнес-отчётность и метрики Firebase</li>
+                                </ul>
+                                <div class="links-block">
+                                    <div class="l-title">Ссылки</div>
+                                    <ul>
+                                        <li><a href="https://vc.ru/promo/39657-pochta-bank-vypustil-mobilnoe-prilozhenie-dlya-detey" target="_blank" rel="noopener">vc.ru: «Почта Банк» выпустил приложение для детей</a></li>
+                                        <li><a href="https://www.kp.ru/daily/26838/3878971/" target="_blank" rel="noopener">КП: Дети хотят платить с мобильного</a></li>
+                                    </ul>
+                                </div>
+                            </div></div>
+                        </div>
+
+                        <div class="proj">
+                            <div class="proj-name">
+                                <span class="proj-emoji">🖥️</span>
+                                <span class="proj-label">Платёжный функционал в АРМ сотрудников</span>
+                                <span class="proj-arrow">▸</span>
+                            </div>
+                            <div class="proj-details"><div class="proj-details-inner">
+                                <ul class="task-list">
+                                    <li>Бесшовный вход сотрудников отделений в усечённую версию интернет-банка клиента (on behalf)</li>
+                                    <li>Помощь клиенту в платежах и обучение самостоятельной работе в ДБО</li>
+                                    <li>Запуск во всех отделениях банка</li>
+                                </ul>
+                            </div></div>
+                        </div>
+
+                        <div class="proj">
+                            <div class="proj-name">
+                                <span class="proj-emoji">🏧</span>
+                                <span class="proj-label">Платежи во всей сети банкоматов</span>
+                                <span class="proj-arrow">▸</span>
+                            </div>
+                            <div class="proj-details"><div class="proj-details-inner">
+                                <ul class="task-list">
+                                    <li>Постановка требований, заключение договоров с агрегаторами: Киберплат, А3, QIWI, «Город»</li>
+                                    <li>Адаптация ПО банкоматов под web-технологии</li>
+                                    <li>Запуск платежей и переводов во всей банкоматной сети</li>
+                                </ul>
+                            </div></div>
+                        </div>
+
+                        <div class="proj">
+                            <div class="proj-name">
+                                <span class="proj-emoji">📦</span>
+                                <span class="proj-label">Продажи коробочных продуктов в сети банка</span>
+                                <span class="proj-arrow">▸</span>
+                            </div>
+                            <div class="proj-details"><div class="proj-details-inner">
+                                <ul class="task-list">
+                                    <li>Договоры с контрагентами: страховые компании, БКИ, юрконсультации, НПФ</li>
+                                    <li>Запуск продукта «Подари лес другу»</li>
+                                    <li>Постановка требований, приёмка, запуск в эксплуатацию</li>
+                                </ul>
+                                <div class="results-block">
+                                    <div class="r-title">Результаты</div>
+                                    <ul>
+                                        <li>100+ млн руб. ежегодного дохода от коробочных продуктов</li>
+                                        <li>«Подари лес другу» — постоянный позитивный PR для банка</li>
+                                    </ul>
+                                </div>
+                            </div></div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
+
+            <!-- Банк Русский Стандарт -->
+            <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div class="tl-content">
+                    <h3>Банк Русский Стандарт</h3>
+                    <p class="tl-meta">Руководитель проектов<br>июнь 2011 — сентябрь 2012</p>
+                    <p class="tl-desc">Виртуальные предоплаченные карты, запуск новых каналов и технологий продаж.</p>
+                    <div class="proj-list">
+                        <div class="proj-list-title">Проекты — наведите для деталей</div>
+
+                        <div class="proj">
+                            <div class="proj-name">
+                                <span class="proj-emoji">🃏</span>
+                                <span class="proj-label">Новые каналы дистрибуции виртуальных карт</span>
+                                <span class="proj-arrow">▸</span>
+                            </div>
+                            <div class="proj-details"><div class="proj-details-inner">
+                                <ul class="task-list">
+                                    <li>Выпуск карты в ATM</li>
+                                    <li>Выпуск карты в мобильном и интернет-банке</li>
+                                    <li>Выпуск карты в CPA-партнёрской сети</li>
+                                    <li>Выпуск карты на сайте с оплатой со счёта мобильного телефона</li>
+                                </ul>
+                            </div></div>
+                        </div>
+
+                        <div class="proj">
+                            <div class="proj-name">
+                                <span class="proj-emoji">📢</span>
+                                <span class="proj-label">Маркетинг, CRM и соответствие нормам</span>
+                                <span class="proj-arrow">▸</span>
+                            </div>
+                            <div class="proj-details"><div class="proj-details-inner">
+                                <ul class="task-list">
+                                    <li>Запуск кампаний в интернете — CPA, социальные сети</li>
+                                    <li>Организация и контроль CRM-кампаний</li>
+                                    <li>Адаптация продуктов под нормы 161-ФЗ и 152-ФЗ</li>
+                                    <li>Меры по предотвращению fraud и gaming-схем</li>
+                                </ul>
+                            </div></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- ОТП Банк -->
+            <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div class="tl-content">
+                    <h3>ОТП Банк</h3>
+                    <p class="tl-meta">Руководитель продукта, МСБ<br>август 2008 — февраль 2011</p>
+                    <p class="tl-desc">Разработка и продуктовое сопровождение кредитных продуктов для малого бизнеса.</p>
+                    <div class="proj-list">
+                        <div class="proj-list-title">Задачи — наведите для деталей</div>
+
+                        <div class="proj">
+                            <div class="proj-name">
+                                <span class="proj-emoji">🏦</span>
+                                <span class="proj-label">Кредитные продукты для малого и среднего бизнеса</span>
+                                <span class="proj-arrow">▸</span>
+                            </div>
+                            <div class="proj-details"><div class="proj-details-inner">
+                                <ul class="task-list">
+                                    <li>Запуск экспресс-кредита для МСБ</li>
+                                    <li>Контроль изменений законодательства, актуализация нормативной базы</li>
+                                    <li>Анализ рынка кредитных и депозитных продуктов для МСБ</li>
+                                    <li>Подготовка ТЗ на автоматизацию процессов</li>
+                                    <li>Разработка методики оценки кредитоспособности МСБ</li>
+                                    <li>Методологическая поддержка сети, обучающие семинары</li>
+                                </ul>
+                            </div></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Кредит Европа Банк -->
+            <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div class="tl-content">
+                    <h3>Кредит Европа Банк</h3>
+                    <p class="tl-meta">Менеджер</p>
+                    <p class="tl-desc">Запуск автокредитования для малого и среднего бизнеса.</p>
+                </div>
+            </div>
+
         </div>
-
-        <!-- Почта Банк -->
-        <div class="company-block">
-            <div class="company-header">
-                <h3>Почта Банк</h3>
-                <div class="company-meta">Руководитель продукта &nbsp;·&nbsp; сентябрь 2012 — ноябрь 2021</div>
-            </div>
-            <div class="company-desc">
-                Разработка и сопровождение диджитал и комиссионных продуктов/услуг для физических лиц. В проекте по созданию дистанционных каналов банка с первого дня.
-            </div>
-
-            <div class="projects-title">Проекты</div>
-
-            <div class="project-card">
-                <h4>Запуск мобильного приложения и интернет-банка «Почта Банк Онлайн»</h4>
-                <ul class="task-list">
-                    <li>Запуск мобильного приложения и интернет-банка с нулевой стадии</li>
-                    <li>Проработка UX сценариев</li>
-                    <li>Постановка и согласование бизнес-требований к omni-channel логике в каналах: интернет-банк, мобильный банк, банкоматы/терминалы</li>
-                    <li>Взаимодействие с 4 аутсорс-подрядчиками</li>
-                    <li>Анализ функциональных требований</li>
-                    <li>Приёмка функционала и запуск в промышленную эксплуатацию</li>
-                </ul>
-                <div class="results-block">
-                    <div class="results-title">Результаты Markswebb</div>
-                    <ul>
-                        <li>2016: iOS — 3 место, Android — 5 место</li>
-                        <li>2017: iOS — 3 место, Android — 4 место, Интернет-банк — 8 место</li>
-                        <li>2018: iOS — 7 место, Android — 4 место, Интернет-банк — 4 место</li>
-                        <li>2019: iOS — 4 место, Android — 6 место, Интернет-банк — 5–6 место</li>
-                        <li>2020: iOS — 4 место, Android — 5 место, Интернет-банк — 6 место</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <h4>Единый канал коммуникаций с клиентом <span class="award-badge">🥈 Markswebb 2021</span></h4>
-                <ul class="task-list">
-                    <li>Разработка и утверждение концепции единого раздела (чат / push / SMS)</li>
-                    <li>Замена коробочного решения от ЦФТ на собственный чат-сервис</li>
-                    <li>Объединённый раздел с полной историей переписки клиента и банка</li>
-                    <li>Гибкий механизм сортировки сообщений по группам в соответствии с контекстом</li>
-                    <li>Отправка и обработка голосовых сообщений в чате</li>
-                    <li>Предиктивные подсказки возможных формулировок вопроса</li>
-                    <li>Механизм быстрых переходов в разделы, соответствующие теме вопроса; автоматизация массовых тематик</li>
-                    <li>Интеграция чат-бота с сервисами ДБО для персонализированных ответов и автоматизации частых запросов</li>
-                    <li>Возможность задать вопрос по любой маркетинговой коммуникации — оператору пересылается контекст (push/SMS)</li>
-                    <li>Настраиваемый справочник частых вопросов с кнопками быстрых действий</li>
-                    <li>Инициация чата со стороны сотрудника банка</li>
-                    <li>Оценка качества консультации клиентом</li>
-                    <li>Флаг прочтения клиентом чат/push/SMS сообщений в ДБО</li>
-                    <li>Настройка бизнес-метрик для оперативной статистики в Firebase</li>
-                </ul>
-                <div class="results-block">
-                    <div class="results-title">Результаты</div>
-                    <ul>
-                        <li>Более 3 млн уникальных пользователей и 11+ млн обращений к разделу ежемесячно</li>
-                        <li>Более 10 тыс/мес чат-консультаций по маркетинговым и CRM-сообщениям</li>
-                        <li>Чат-бот полностью отрабатывает 13% всех обращений клиентов</li>
-                    </ul>
-                </div>
-                <div class="links-block">
-                    <div class="links-title">Ссылки</div>
-                    <ul>
-                        <li><a href="https://plusworld.ru/daily/banki-i-mfo/klienty-pochta-banka-smogut-ispolzovat-golosovye-soobshheniya-v-chate-mobilnogo-prilozheniya/" target="_blank" rel="noopener">Клиенты Почта Банка смогут использовать голосовые сообщения в чате</a></li>
-                        <li><a href="https://markswebb.ru/report/chatbot-rank-2021/#banks" target="_blank" rel="noopener">Markswebb Chatbot Rank 2021 — 2-е место, качество клиентского опыта в чатах банков</a></li>
-                        <li><a href="https://markswebb.ru/report/chatbot-rank-2021/#rating" target="_blank" rel="noopener">Markswebb Chatbot Rank 2021 — 5-е место, лучший клиентский опыт среди чатов трёх отраслей</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <h4>Увеличение уровня доставки и читаемости push-сообщений</h4>
-                <ul class="task-list">
-                    <li>Полный рефакторинг функционала push в приложении</li>
-                    <li>Создание гарантированных способов доставки, независимых от push-сервисов Apple / Google / Huawei</li>
-                    <li>Chatheads — отображение push-сообщений банка поверх интерфейса любого приложения (по аналогии с Facebook Messenger)</li>
-                    <li>Дополнительный признак «важности» сообщения: отображение поверх экрана авторизации при первом входе</li>
-                    <li>Возможность отображения дополнительного контента в push</li>
-                    <li>Единый механизм deeplink'ов на конкретные страницы приложения и интернет-банка (push / SMS / email)</li>
-                    <li>Счётчик непрочитанных сообщений</li>
-                    <li>Просмотр истории push/SMS-сообщений в неавторизованной зоне</li>
-                    <li>Настройка бизнес-метрик для Firebase</li>
-                </ul>
-                <div class="results-block">
-                    <div class="results-title">Результаты</div>
-                    <ul>
-                        <li>Доля подписанных на push: 80% → 94%</li>
-                        <li>Доставка push: 60% → 85%</li>
-                        <li>Read rate push-сообщений — в два раза</li>
-                        <li>Общий уровень доставки push/SMS: +4%</li>
-                    </ul>
-                </div>
-                <div class="links-block">
-                    <div class="links-title">Ссылки</div>
-                    <ul>
-                        <li><a href="https://news.mail.ru/society/46639917/" target="_blank" rel="noopener">На передний план: зачем банки начали запускать chat heads в приложениях</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <h4>Онлайн выдача кредитов в мобильном и интернет-банке</h4>
-                <ul class="task-list">
-                    <li>Согласование с внутренними подразделениями и реализация полного бизнес-процесса дистанционного заключения кредитных договоров</li>
-                    <li>Онлайн заключение договоров страхования в кредитном процессе</li>
-                    <li>Автоматизация формирования юридически значимых документов для взыскания просроченных кредитов</li>
-                    <li>Интеграция запроса выписки из ПФР в кредитный процесс</li>
-                    <li>Возможность подачи заявки в отделении и завершения выдачи в ДБО, в том числе для новых клиентов</li>
-                    <li>Настройка бизнес-метрик в Firebase</li>
-                </ul>
-                <div class="results-block">
-                    <div class="results-title">Результаты</div>
-                    <ul>
-                        <li>Более 20% кредитов выдаётся полностью онлайн</li>
-                        <li>Более 60% проникновение страховки по онлайн-выдачам</li>
-                    </ul>
-                </div>
-                <div class="links-block">
-                    <div class="links-title">Ссылки</div>
-                    <ul>
-                        <li><a href="https://www.pochtabank.ru/news/439298" target="_blank" rel="noopener">«Почта Банк» запустил выдачу кредитов наличными в ДБО</a></li>
-                        <li><a href="https://www.gazeta.ru/social/2020/03/27/13025419.shtml" target="_blank" rel="noopener">«Каждый третий кредит у нас выдаётся через Почта Банк Онлайн»</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <h4>Интеграция ДБО с платформой аналитического и событийного маркетинга SAS <span class="award-badge">🏆 Finaward 2018</span></h4>
-                <ul class="task-list">
-                    <li>Двухсторонняя интеграция ДБО и SAS ACRM: таргетированные предложения в мобильном и интернет-банке</li>
-                    <li>Интеграция ДБО с SAS RTM: отправка более 20 различных событий по действиям пользователей в real-time</li>
-                    <li>Реализация механизма отображения таргетированных предложений из ACRM и RTM в ДБО</li>
-                </ul>
-                <div class="results-block">
-                    <div class="results-title">Результаты</div>
-                    <ul>
-                        <li>Более 30% повторных CRM-продаж инициируется в Почта Банк Онлайн</li>
-                    </ul>
-                </div>
-                <div class="links-block">
-                    <div class="links-title">Ссылки</div>
-                    <ul>
-                        <li><a href="https://www.pochtabank.ru/news/575015" target="_blank" rel="noopener">Почта Банк первым в России интегрировал real time marketing с мобильным приложением и интернет-банком</a></li>
-                        <li><a href="https://www.connect-wit.ru/pochta-bank-i-sas-voshli-v-trojku-luchshih-v-nominatsii-vnedrenie-v-sfere-vzaimodejstviya-s-klientami-premii-finaward-2018.html" target="_blank" rel="noopener">Почта Банк и SAS — топ-3 в номинации «Внедрение в сфере взаимодействия с клиентами», Finaward 2018</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <h4>Информирование о счетах ЖКУ без подписки клиента</h4>
-                <ul class="task-list">
-                    <li>Механизм косвенного сопоставления адресов в счетах поставщиков ЖКУ с адресами клиентов банка</li>
-                    <li>Клиенту не нужно указывать лицевой счёт — банк сам находит задолженность и информирует</li>
-                </ul>
-                <div class="results-block">
-                    <div class="results-title">Результаты</div>
-                    <ul>
-                        <li>Ежемесячный мэппинг более 50 000 клиентов / счетов</li>
-                        <li>Прирост платежей более 30% по сравнению с контрольной группой</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <h4>Сервис получения скан-копий ранее подписанных документов</h4>
-                <ul class="task-list">
-                    <li>Интеграция с внешним архивом банка (Делис Архив)</li>
-                    <li>Возможность получения клиентами скан-копий своих договоров дистанционно</li>
-                </ul>
-                <div class="results-block">
-                    <div class="results-title">Результаты</div>
-                    <ul>
-                        <li>80% запросов на копию договора переведено в дистанционные каналы</li>
-                        <li>Более 2 000 запросов ежемесячно</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <h4>Коммуникации с клиентами в формате Stories</h4>
-                <ul class="task-list">
-                    <li>Функционал коммуникаций в формате, приближённом к Instagram Stories</li>
-                    <li>Создание сервиса взаимодействия внешних систем и ДБО для отправки stories</li>
-                    <li>Альбом преднастроенных визуальных шаблонов</li>
-                    <li>Панель администрирования для настройки stories бизнес-пользователями без участия IT</li>
-                </ul>
-                <div class="results-block">
-                    <div class="results-title">Результаты</div>
-                    <ul>
-                        <li>Ежедневное использование бизнес-подразделениями для продвижения продуктов и услуг</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <h4>Приложение «Почта Банк. Младший»</h4>
-                <ul class="task-list">
-                    <li>Запуск отдельного банковского приложения для детей и подростков 6–14 лет с нуля</li>
-                    <li>Разработка и согласование концепции приложения</li>
-                    <li>Согласование юридической схемы выпуска дополнительной виртуальной карты для несовершеннолетних</li>
-                    <li>Управление лимитами детской карты в приложении родителя</li>
-                    <li>Интеграция игровых механик для парка детских профессий Кидс Сити</li>
-                    <li>Реализация и настройка периодической бизнес-отчётности</li>
-                    <li>Настройка метрик Firebase для оперативной отчётности</li>
-                </ul>
-                <div class="links-block">
-                    <div class="links-title">Ссылки</div>
-                    <ul>
-                        <li><a href="https://vc.ru/promo/39657-pochta-bank-vypustil-mobilnoe-prilozhenie-dlya-detey" target="_blank" rel="noopener">«Почта Банк» выпустил мобильное приложение для детей — vc.ru</a></li>
-                        <li><a href="https://www.kp.ru/daily/26838/3878971/" target="_blank" rel="noopener">Дети хотят платить картой или с мобильного приложения — КП</a></li>
-                        <li><a href="https://plusworld.ru/daily/platezhnyj-biznes/pochta-bank-mladshij/" target="_blank" rel="noopener">Приложение «Почта Банк Младший» в «КидсСити»</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <h4>Платёжный функционал для АРМ сотрудников в отделениях</h4>
-                <ul class="task-list">
-                    <li>Бесшовный вход сотрудников отделений в усечённую версию интернет-банка клиента (on behalf)</li>
-                    <li>Помощь клиенту в совершении повседневных платежей и обучение самостоятельной работе в ДБО</li>
-                    <li>Запуск во всех отделениях банка</li>
-                </ul>
-            </div>
-
-            <div class="project-card">
-                <h4>Платёжный функционал во всей сети банкоматов</h4>
-                <ul class="task-list">
-                    <li>Постановка бизнес-требований, приёмка и запуск в промышленную эксплуатацию</li>
-                    <li>Заключение договоров с агрегаторами: Киберплат, А3, QIWI, Федеральная система «Город»</li>
-                    <li>Адаптация ПО банкоматов под работу на web-технологиях</li>
-                    <li>Запуск платежей и денежных переводов во всей сети ATM банка</li>
-                </ul>
-            </div>
-
-            <div class="project-card">
-                <h4>Продажи комиссионных «коробочных» продуктов в сети банка</h4>
-                <ul class="task-list">
-                    <li>Постановка требований, приёмка и запуск в промышленную эксплуатацию</li>
-                    <li>Заключение договоров с контрагентами: страховые компании, бюро кредитных историй, юридические консультации, НПФ</li>
-                    <li>Запуск продукта «Подари лес другу»</li>
-                </ul>
-                <div class="results-block">
-                    <div class="results-title">Результаты</div>
-                    <ul>
-                        <li>Ежегодный доход от продаж коробочных продуктов — более 100 млн руб.</li>
-                        <li>Проект «Подари лес другу» — источник постоянных позитивных PR-поводов</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Банк Русский Стандарт -->
-        <div class="company-block">
-            <div class="company-header">
-                <h3>Банк Русский Стандарт</h3>
-                <div class="company-meta">Руководитель проектов, Банковский бизнес в области новых технологий &nbsp;·&nbsp; июнь 2011 — сентябрь 2012</div>
-            </div>
-            <div class="company-desc">
-                Разработка и сопровождение линейки виртуальных предоплаченных карт, запуск новых каналов и технологий продаж.
-            </div>
-
-            <div class="projects-title">Задачи</div>
-
-            <div class="project-card">
-                <h4>Запуск новых каналов дистрибуции виртуальных карт</h4>
-                <ul class="task-list">
-                    <li>Выпуск карты в ATM</li>
-                    <li>Выпуск карты в мобильном банке</li>
-                    <li>Выпуск карты в интернет-банке</li>
-                    <li>Выпуск карты в CPA-партнёрской сети</li>
-                    <li>Выпуск карты на сайте с оплатой со счёта мобильного телефона</li>
-                </ul>
-            </div>
-
-            <div class="project-card">
-                <h4>Маркетинг, CRM и соответствие нормам</h4>
-                <ul class="task-list">
-                    <li>Подготовка и запуск кампаний по продвижению в интернете — CPA, социальные сети</li>
-                    <li>Организация и контроль проведения CRM-кампаний</li>
-                    <li>Адаптация продуктов под нормы 161-ФЗ и 152-ФЗ</li>
-                    <li>Выработка мер по предотвращению fraud и gaming-схем</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- ОТП Банк -->
-        <div class="company-block">
-            <div class="company-header">
-                <h3>ОТП Банк</h3>
-                <div class="company-meta">Руководитель продукта, Малый и средний бизнес &nbsp;·&nbsp; август 2008 — февраль 2011</div>
-            </div>
-            <div class="company-desc">
-                Разработка и продуктовое сопровождение кредитных продуктов для малого бизнеса.
-            </div>
-
-            <div class="projects-title">Задачи</div>
-
-            <div class="project-card">
-                <h4>Кредитные продукты для малого и среднего бизнеса</h4>
-                <ul class="task-list">
-                    <li>Запуск экспресс-кредита для предприятий малого бизнеса</li>
-                    <li>Контроль изменений действующего законодательства по вопросам банковского обслуживания МСБ</li>
-                    <li>Актуализация нормативной базы банка в рамках задач подразделения</li>
-                    <li>Анализ рынка кредитных и депозитных продуктов для малого бизнеса</li>
-                    <li>Подготовка ТЗ на автоматизацию процессов</li>
-                    <li>Обобщение и анализ статистической информации для руководства банка</li>
-                    <li>Разработка и защита предложений по методике оценки кредитоспособности предприятий МСБ</li>
-                    <li>Методологическая поддержка сети, проведение обучающих семинаров</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Кредит Европа Банк -->
-        <div class="company-block">
-            <div class="company-header">
-                <h3>Кредит Европа Банк</h3>
-                <div class="company-meta">Менеджер</div>
-            </div>
-            <div class="company-desc">
-                Запуск автокредитования для малого и среднего бизнеса.
-            </div>
-        </div>
-
     </div>
 </section>
 
@@ -806,7 +993,7 @@
             <div class="extra-card">
                 <h3>📚 Образование</h3>
                 <p><strong>Тульский государственный университет</strong><br>2009, Финансы и кредит</p>
-                <p style="margin-top: 12px;"><strong>МАТ им. Н.Н. Годовикова</strong><br>2004, Конструирование и проектирование летательных аппаратов</p>
+                <p style="margin-top:12px;"><strong>МАТ им. Н.Н. Годовикова</strong><br>2004, Конструирование и проектирование летательных аппаратов</p>
             </div>
             <div class="extra-card">
                 <h3>🗣 Языки</h3>
@@ -852,6 +1039,7 @@
 </footer>
 
 <script>
+    // Smooth scroll for nav
     document.querySelectorAll('nav a').forEach(a => {
         a.addEventListener('click', function(e) {
             e.preventDefault();
@@ -859,6 +1047,8 @@
             if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
     });
+
+    // Fade-in on scroll
     const obs = new IntersectionObserver(entries => {
         entries.forEach(e => {
             if (e.isIntersecting) {
@@ -867,12 +1057,19 @@
             }
         });
     }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
-    document.querySelectorAll('.skill-card, .company-block, .project-card, .extra-card, .contact-item').forEach(el => {
+    document.querySelectorAll('.skill-card, .tl-item, .extra-card, .contact-item').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(16px)';
         el.style.transition = 'opacity 0.45s ease, transform 0.45s ease';
         obs.observe(el);
     });
+
+    // Touch devices: tap to toggle project details
+    if ('ontouchstart' in window) {
+        document.querySelectorAll('.proj').forEach(proj => {
+            proj.addEventListener('click', () => proj.classList.toggle('open'));
+        });
+    }
 </script>
 
 </body>
