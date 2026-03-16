@@ -4,21 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Михаил Барсуков — Product & Project Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --primary: #ea580c;
-            --primary-dark: #c2410c;
-            --text: #1c1917;
-            --text-muted: #78716c;
-            --bg: #fff7ed;
-            --surface: #ffffff;
-            --gradient: linear-gradient(135deg, #f97316 0%, #db2777 100%);
+            --primary: #3F51B5;
+            --primary-dark: #1A237E;
+            --text: #1C1B2E;
+            --text-muted: #5C5B72;
+            --bg: #F5F5F7;
+            --surface: #FFFFFF;
+            --gradient: linear-gradient(135deg, #3F51B5 0%, #7C4DFF 100%);
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
             color: var(--text);
             background: var(--bg);
@@ -144,12 +147,13 @@
         .skill-card {
             background: var(--surface);
             padding: 28px 24px;
-            border-radius: 12px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-            border-top: 3px solid var(--primary);
-            transition: transform 0.2s, box-shadow 0.2s;
+            border-radius: 16px;
+            box-shadow: none;
+            border: 1px solid #E0E0EA;
+            border-bottom: 3px solid var(--primary);
+            transition: transform 0.2s, border-color 0.2s;
         }
-        .skill-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+        .skill-card:hover { transform: translateY(-3px); border-color: var(--primary); }
         .skill-icon { font-size: 2.25rem; margin-bottom: 14px; }
         .skill-card h3 { font-size: 1.2rem; margin-bottom: 12px; color: var(--text); }
         .skill-card ul { list-style: none; color: var(--text-muted); font-size: 0.95rem; }
@@ -181,7 +185,7 @@
         }
         .toggle-btn + .toggle-btn { border-left: 2px solid var(--primary); }
         .toggle-btn.active { background: var(--primary); color: #fff; }
-        .toggle-btn:not(.active):hover { background: #fff7ed; }
+        .toggle-btn:not(.active):hover { background: #EEF0FF; }
 
         /* ── Timeline ── */
         .timeline { max-width: 860px; margin: 0 auto; position: relative; padding: 24px 0; }
@@ -199,13 +203,15 @@
         .tl-content {
             background: var(--surface);
             padding: 24px 22px;
-            border-radius: 12px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            border-radius: 16px;
+            box-shadow: none;
+            border: 1px solid #E0E0EA;
+            border-bottom: 3px solid var(--primary);
             width: 46%;
             position: relative;
-            transition: box-shadow 0.2s;
+            transition: border-color 0.2s;
         }
-        .tl-content:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.10); }
+        .tl-content:hover { border-color: var(--primary); }
         .tl-item:nth-child(odd)  .tl-content { margin-right: auto; }
         .tl-item:nth-child(even) .tl-content { margin-left: auto; }
         .tl-dot {
@@ -261,7 +267,7 @@
             border: 1px solid transparent;
             transition: background 0.15s, border-color 0.15s;
         }
-        .proj:hover { background: #fff7ed; border-color: #fdba74; }
+        .proj:hover { background: #EEF0FF; border-color: #C5CBF5; }
         .proj-name {
             display: flex;
             align-items: flex-start;
@@ -309,7 +315,7 @@
         .results-block li { font-size: 0.83rem; color: #065f46; padding: 2px 0 2px 14px; position: relative; }
         .results-block li::before { content: '↑'; position: absolute; left: 0; color: #059669; font-weight: bold; }
 
-        .links-block { margin-top: 6px; padding: 7px 12px; background: #fff7ed; border-radius: 6px; }
+        .links-block { margin-top: 6px; padding: 7px 12px; background: #EEF0FF; border-radius: 6px; }
         .links-block .l-title { font-size: 0.72rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
         .links-block ul { list-style: none; }
         .links-block li { font-size: 0.8rem; padding: 2px 0; }
@@ -331,14 +337,14 @@
             .proj:hover { background: transparent; border-color: transparent; }
             .proj:hover .proj-details { max-height: 0; }
             .proj:hover .proj-arrow { transform: none; color: var(--text-muted); }
-            .proj.open { background: #eff6ff; border-color: #bfdbfe; }
+            .proj.open { background: #EEF0FF; border-color: #C5CBF5; }
             .proj.open .proj-details { max-height: 2000px; }
             .proj.open .proj-arrow { transform: rotate(90deg); color: var(--primary); }
         }
 
         /* Education & extras */
         .extras { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 32px; }
-        .extra-card { background: var(--surface); padding: 24px; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+        .extra-card { background: var(--surface); padding: 24px; border-radius: 16px; border: 1px solid #E0E0EA; }
         .extra-card h3 { font-size: 1.1rem; color: var(--text); margin-bottom: 12px; }
         .extra-card p, .extra-card ul { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
         .extra-card ul { list-style: none; }
@@ -349,9 +355,9 @@
         .contact-item {
             background: var(--surface);
             padding: 24px;
-            border-radius: 12px;
+            border-radius: 16px;
             text-align: center;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            border: 1px solid #E0E0EA;
             transition: transform 0.2s;
         }
         .contact-item:hover { transform: translateY(-3px); }
@@ -359,7 +365,7 @@
         .contact-item a { color: var(--primary); text-decoration: none; font-weight: 500; }
         .contact-item a:hover { text-decoration: underline; }
 
-        footer { background: var(--text); color: #fff; text-align: center; padding: 28px 0; font-size: 0.9rem; }
+        footer { background: var(--primary-dark); color: #fff; text-align: center; padding: 28px 0; font-size: 0.9rem; }
 
         @media (max-width: 768px) {
             section { padding: 48px 0; }
