@@ -8,13 +8,13 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --primary: #111827;
-            --primary-dark: #000000;
-            --text: #111827;
-            --text-muted: #6b7280;
-            --bg: #f9fafb;
+            --primary: #ea580c;
+            --primary-dark: #c2410c;
+            --text: #1c1917;
+            --text-muted: #78716c;
+            --bg: #fff7ed;
             --surface: #ffffff;
-            --gradient: linear-gradient(135deg, #111827 0%, #374151 100%);
+            --gradient: linear-gradient(135deg, #f97316 0%, #db2777 100%);
         }
 
         body {
@@ -44,6 +44,34 @@
         }
         @keyframes shimmer { 0%, 100% { transform: scale(1); opacity: 0.6; } 50% { transform: scale(1.15); opacity: 0.9; } }
         .header-inner { position: relative; z-index: 1; }
+
+        /* Photo */
+        .header-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid rgba(255,255,255,0.65);
+            margin: 0 auto 24px;
+            overflow: hidden;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+            background: rgba(255,255,255,0.15);
+        }
+        .header-photo img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .header-photo-placeholder {
+            width: 100%; height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.9);
+            letter-spacing: 0.04em;
+        }
+
         h1 { font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 700; margin-bottom: 12px; text-shadow: 0 2px 8px rgba(0,0,0,0.15); }
         .tagline { font-size: 1.25rem; opacity: 0.95; margin-bottom: 24px; font-weight: 400; }
         .badge {
@@ -116,13 +144,12 @@
         .skill-card {
             background: var(--surface);
             padding: 28px 24px;
-            border-radius: 6px;
-            box-shadow: none;
-            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
             border-top: 3px solid var(--primary);
-            transition: box-shadow 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-        .skill-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.07); }
+        .skill-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
         .skill-icon { font-size: 2.25rem; margin-bottom: 14px; }
         .skill-card h3 { font-size: 1.2rem; margin-bottom: 12px; color: var(--text); }
         .skill-card ul { list-style: none; color: var(--text-muted); font-size: 0.95rem; }
@@ -154,7 +181,7 @@
         }
         .toggle-btn + .toggle-btn { border-left: 2px solid var(--primary); }
         .toggle-btn.active { background: var(--primary); color: #fff; }
-        .toggle-btn:not(.active):hover { background: #eff6ff; }
+        .toggle-btn:not(.active):hover { background: #fff7ed; }
 
         /* ── Timeline ── */
         .timeline { max-width: 860px; margin: 0 auto; position: relative; padding: 24px 0; }
@@ -172,14 +199,13 @@
         .tl-content {
             background: var(--surface);
             padding: 24px 22px;
-            border-radius: 6px;
-            box-shadow: none;
-            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
             width: 46%;
             position: relative;
             transition: box-shadow 0.2s;
         }
-        .tl-content:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+        .tl-content:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.10); }
         .tl-item:nth-child(odd)  .tl-content { margin-right: auto; }
         .tl-item:nth-child(even) .tl-content { margin-left: auto; }
         .tl-dot {
@@ -235,7 +261,7 @@
             border: 1px solid transparent;
             transition: background 0.15s, border-color 0.15s;
         }
-        .proj:hover { background: #f3f4f6; border-color: #d1d5db; }
+        .proj:hover { background: #fff7ed; border-color: #fdba74; }
         .proj-name {
             display: flex;
             align-items: flex-start;
@@ -274,23 +300,23 @@
         .results-block {
             margin-top: 8px;
             padding: 8px 12px;
-            background: #f9fafb;
+            background: #ecfdf5;
             border-radius: 6px;
-            border-left: 3px solid #374151;
+            border-left: 3px solid #059669;
         }
-        .results-block .r-title { font-size: 0.72rem; font-weight: 700; color: #374151; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 5px; }
+        .results-block .r-title { font-size: 0.72rem; font-weight: 700; color: #059669; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 5px; }
         .results-block ul { list-style: none; }
-        .results-block li { font-size: 0.83rem; color: #374151; padding: 2px 0 2px 14px; position: relative; }
-        .results-block li::before { content: '↑'; position: absolute; left: 0; color: #374151; font-weight: bold; }
+        .results-block li { font-size: 0.83rem; color: #065f46; padding: 2px 0 2px 14px; position: relative; }
+        .results-block li::before { content: '↑'; position: absolute; left: 0; color: #059669; font-weight: bold; }
 
-        .links-block { margin-top: 6px; padding: 7px 12px; background: #f3f4f6; border-radius: 6px; }
+        .links-block { margin-top: 6px; padding: 7px 12px; background: #fff7ed; border-radius: 6px; }
         .links-block .l-title { font-size: 0.72rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
         .links-block ul { list-style: none; }
         .links-block li { font-size: 0.8rem; padding: 2px 0; }
         .links-block a { color: var(--primary); text-decoration: none; }
         .links-block a:hover { text-decoration: underline; }
 
-        .award { display: inline-block; background: #374151; color: #fff; font-size: 0.68rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; margin-left: 5px; vertical-align: middle; }
+        .award { display: inline-block; background: linear-gradient(135deg, #f59e0b, #d97706); color: #fff; font-size: 0.68rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; margin-left: 5px; vertical-align: middle; }
 
         /* ── View switching ── */
         .view-compact  { display: block; }
@@ -312,7 +338,7 @@
 
         /* Education & extras */
         .extras { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 32px; }
-        .extra-card { background: var(--surface); padding: 24px; border-radius: 6px; box-shadow: none; border: 1px solid #e5e7eb; }
+        .extra-card { background: var(--surface); padding: 24px; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
         .extra-card h3 { font-size: 1.1rem; color: var(--text); margin-bottom: 12px; }
         .extra-card p, .extra-card ul { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
         .extra-card ul { list-style: none; }
@@ -323,10 +349,9 @@
         .contact-item {
             background: var(--surface);
             padding: 24px;
-            border-radius: 6px;
+            border-radius: 12px;
             text-align: center;
-            box-shadow: none;
-            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
             transition: transform 0.2s;
         }
         .contact-item:hover { transform: translateY(-3px); }
@@ -352,6 +377,11 @@
 <header>
     <div class="container">
         <div class="header-inner">
+            <div class="header-photo">
+                <img src="photo.jpg" alt="Михаил Барсуков"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="header-photo-placeholder" style="display:none;">МБ</div>
+            </div>
             <h1>Михаил Барсуков</h1>
             <p class="tagline">Product & Project Manager</p>
             <span class="badge">16+ лет в банковской и страховой сферах</span>
