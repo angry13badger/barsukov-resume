@@ -205,8 +205,7 @@
             cursor: default;
             user-select: none;
         }
-        .proj-emoji { flex-shrink: 0; line-height: 1.5; }
-        .proj-label { flex: 1; }
+.proj-label { flex: 1; }
         .proj-arrow {
             flex-shrink: 0;
             font-size: 0.7rem;
@@ -323,8 +322,15 @@
             .tl-item { flex-direction: row !important; }
             .tl-content { width: calc(100% - 48px); margin-left: 48px !important; margin-right: 0 !important; }
             .tl-dot { left: 16px; }
-            /* On touch devices: tap to toggle */
+        }
+
+        /* Touch devices: disable sticky hover, use only tap-toggle */
+        @media (hover: none) {
             .proj { cursor: pointer; }
+            .proj:hover { background: transparent; border-color: transparent; }
+            .proj:hover .proj-details { max-height: 0; }
+            .proj:hover .proj-arrow { transform: none; color: var(--text-muted); }
+            .proj.open { background: #eff6ff; border-color: #bfdbfe; }
             .proj.open .proj-details { max-height: 2000px; }
             .proj.open .proj-arrow { transform: rotate(90deg); color: var(--primary); }
         }
@@ -472,8 +478,7 @@
 
                         <div class="proj">
                             <div class="proj-name">
-                                <span class="proj-emoji">📱</span>
-                                <span class="proj-label">Запуск мобильного приложения «Пульс Жизни»</span>
+                                                                <span class="proj-label">Запуск мобильного приложения «Пульс Жизни»</span>
                                 <span class="proj-arrow">▸</span>
                             </div>
                             <div class="proj-details"><div class="proj-details-inner">
@@ -490,8 +495,7 @@
 
                         <div class="proj">
                             <div class="proj-name">
-                                <span class="proj-emoji">📊</span>
-                                <span class="proj-label">Аналитика: Amplitude, AppMetrica, AppsFlyer</span>
+                                                                <span class="proj-label">Аналитика: Amplitude, AppMetrica, AppsFlyer</span>
                                 <span class="proj-arrow">▸</span>
                             </div>
                             <div class="proj-details"><div class="proj-details-inner">
@@ -506,8 +510,7 @@
 
                         <div class="proj">
                             <div class="proj-name">
-                                <span class="proj-emoji">📣</span>
-                                <span class="proj-label">CRM-кампании в мобильном приложении</span>
+                                                                <span class="proj-label">CRM-кампании в мобильном приложении</span>
                                 <span class="proj-arrow">▸</span>
                             </div>
                             <div class="proj-details"><div class="proj-details-inner">
@@ -520,8 +523,7 @@
 
                         <div class="proj">
                             <div class="proj-name">
-                                <span class="proj-emoji">🎯</span>
-                                <span class="proj-label">Система мотивации сотрудников</span>
+                                                                <span class="proj-label">Система мотивации сотрудников</span>
                                 <span class="proj-arrow">▸</span>
                             </div>
                             <div class="proj-details"><div class="proj-details-inner">
@@ -537,8 +539,7 @@
 
                         <div class="proj">
                             <div class="proj-name">
-                                <span class="proj-emoji">👥</span>
-                                <span class="proj-label">Реферальная программа MgM</span>
+                                                                <span class="proj-label">Реферальная программа MgM</span>
                                 <span class="proj-arrow">▸</span>
                             </div>
                             <div class="proj-details"><div class="proj-details-inner">
@@ -552,8 +553,7 @@
 
                         <div class="proj">
                             <div class="proj-name">
-                                <span class="proj-emoji">🧪</span>
-                                <span class="proj-label">A/B/C тесты в мобильном приложении</span>
+                                                                <span class="proj-label">A/B/C тесты в мобильном приложении</span>
                                 <span class="proj-arrow">▸</span>
                             </div>
                             <div class="proj-details"><div class="proj-details-inner">
@@ -567,8 +567,7 @@
 
                         <div class="proj">
                             <div class="proj-name">
-                                <span class="proj-emoji">🤝</span>
-                                <span class="proj-label">«Цифровой агент» <span class="award">🏆 fin Award 2024</span></span>
+                                                                <span class="proj-label">«Цифровой агент» <span class="award">🏆 fin Award 2024</span></span>
                                 <span class="proj-arrow">▸</span>
                             </div>
                             <div class="proj-details"><div class="proj-details-inner">
@@ -602,8 +601,7 @@
 
                         <div class="proj">
                             <div class="proj-name">
-                                <span class="proj-emoji">📱</span>
-                                <span class="proj-label">Запуск мобильного приложения и интернет-банка</span>
+                                                                <span class="proj-label">Запуск мобильного приложения и интернет-банка</span>
                                 <span class="proj-arrow">▸</span>
                             </div>
                             <div class="proj-details"><div class="proj-details-inner">
@@ -628,8 +626,7 @@
 
                         <div class="proj">
                             <div class="proj-name">
-                                <span class="proj-emoji">💬</span>
-                                <span class="proj-label">Единый канал коммуникаций (чат / push / SMS) <span class="award">🥈 Markswebb 2021</span></span>
+                                                                <span class="proj-label">Единый канал коммуникаций (чат / push / SMS) <span class="award">🥈 Markswebb 2021</span></span>
                                 <span class="proj-arrow">▸</span>
                             </div>
                             <div class="proj-details"><div class="proj-details-inner">
@@ -665,8 +662,7 @@
 
                         <div class="proj">
                             <div class="proj-name">
-                                <span class="proj-emoji">🔔</span>
-                                <span class="proj-label">Push-уведомления: доставка и читаемость</span>
+                                                                <span class="proj-label">Push-уведомления: доставка и читаемость</span>
                                 <span class="proj-arrow">▸</span>
                             </div>
                             <div class="proj-details"><div class="proj-details-inner">
@@ -698,8 +694,7 @@
 
                         <div class="proj">
                             <div class="proj-name">
-                                <span class="proj-emoji">💳</span>
-                                <span class="proj-label">Онлайн выдача кредитов</span>
+                                                                <span class="proj-label">Онлайн выдача кредитов</span>
                                 <span class="proj-arrow">▸</span>
                             </div>
                             <div class="proj-details"><div class="proj-details-inner">
@@ -729,8 +724,7 @@
 
                         <div class="proj">
                             <div class="proj-name">
-                                <span class="proj-emoji">🔗</span>
-                                <span class="proj-label">Интеграция ДБО с SAS ACRM / RTM <span class="award">🏆 Finaward 2018</span></span>
+                                                                <span class="proj-label">Интеграция ДБО с SAS ACRM / RTM <span class="award">🏆 Finaward 2018</span></span>
                                 <span class="proj-arrow">▸</span>
                             </div>
                             <div class="proj-details"><div class="proj-details-inner">
@@ -757,8 +751,7 @@
 
                         <div class="proj">
                             <div class="proj-name">
-                                <span class="proj-emoji">🏠</span>
-                                <span class="proj-label">Счета ЖКУ без подписки клиента</span>
+                                                                <span class="proj-label">Счета ЖКУ без подписки клиента</span>
                                 <span class="proj-arrow">▸</span>
                             </div>
                             <div class="proj-details"><div class="proj-details-inner">
@@ -778,8 +771,7 @@
 
                         <div class="proj">
                             <div class="proj-name">
-                                <span class="proj-emoji">📄</span>
-                                <span class="proj-label">Скан-копии ранее подписанных документов</span>
+                                                                <span class="proj-label">Скан-копии ранее подписанных документов</span>
                                 <span class="proj-arrow">▸</span>
                             </div>
                             <div class="proj-details"><div class="proj-details-inner">
@@ -799,8 +791,7 @@
 
                         <div class="proj">
                             <div class="proj-name">
-                                <span class="proj-emoji">📖</span>
-                                <span class="proj-label">Коммуникации в формате Stories</span>
+                                                                <span class="proj-label">Коммуникации в формате Stories</span>
                                 <span class="proj-arrow">▸</span>
                             </div>
                             <div class="proj-details"><div class="proj-details-inner">
@@ -815,8 +806,7 @@
 
                         <div class="proj">
                             <div class="proj-name">
-                                <span class="proj-emoji">👶</span>
-                                <span class="proj-label">«Почта Банк. Младший» — приложение для детей 6–14 лет</span>
+                                                                <span class="proj-label">«Почта Банк. Младший» — приложение для детей 6–14 лет</span>
                                 <span class="proj-arrow">▸</span>
                             </div>
                             <div class="proj-details"><div class="proj-details-inner">
@@ -839,8 +829,7 @@
 
                         <div class="proj">
                             <div class="proj-name">
-                                <span class="proj-emoji">🖥️</span>
-                                <span class="proj-label">Платёжный функционал в АРМ сотрудников</span>
+                                                                <span class="proj-label">Платёжный функционал в АРМ сотрудников</span>
                                 <span class="proj-arrow">▸</span>
                             </div>
                             <div class="proj-details"><div class="proj-details-inner">
@@ -854,8 +843,7 @@
 
                         <div class="proj">
                             <div class="proj-name">
-                                <span class="proj-emoji">🏧</span>
-                                <span class="proj-label">Платежи во всей сети банкоматов</span>
+                                                                <span class="proj-label">Платежи во всей сети банкоматов</span>
                                 <span class="proj-arrow">▸</span>
                             </div>
                             <div class="proj-details"><div class="proj-details-inner">
@@ -869,8 +857,7 @@
 
                         <div class="proj">
                             <div class="proj-name">
-                                <span class="proj-emoji">📦</span>
-                                <span class="proj-label">Продажи коробочных продуктов в сети банка</span>
+                                                                <span class="proj-label">Продажи коробочных продуктов в сети банка</span>
                                 <span class="proj-arrow">▸</span>
                             </div>
                             <div class="proj-details"><div class="proj-details-inner">
@@ -905,8 +892,7 @@
 
                         <div class="proj">
                             <div class="proj-name">
-                                <span class="proj-emoji">🃏</span>
-                                <span class="proj-label">Новые каналы дистрибуции виртуальных карт</span>
+                                                                <span class="proj-label">Новые каналы дистрибуции виртуальных карт</span>
                                 <span class="proj-arrow">▸</span>
                             </div>
                             <div class="proj-details"><div class="proj-details-inner">
@@ -921,8 +907,7 @@
 
                         <div class="proj">
                             <div class="proj-name">
-                                <span class="proj-emoji">📢</span>
-                                <span class="proj-label">Маркетинг, CRM и соответствие нормам</span>
+                                                                <span class="proj-label">Маркетинг, CRM и соответствие нормам</span>
                                 <span class="proj-arrow">▸</span>
                             </div>
                             <div class="proj-details"><div class="proj-details-inner">
@@ -951,8 +936,7 @@
 
                         <div class="proj">
                             <div class="proj-name">
-                                <span class="proj-emoji">🏦</span>
-                                <span class="proj-label">Кредитные продукты для малого и среднего бизнеса</span>
+                                                                <span class="proj-label">Кредитные продукты для малого и среднего бизнеса</span>
                                 <span class="proj-arrow">▸</span>
                             </div>
                             <div class="proj-details"><div class="proj-details-inner">
@@ -1065,7 +1049,7 @@
     });
 
     // Touch devices: tap to toggle project details
-    if ('ontouchstart' in window) {
+    if (window.matchMedia('(hover: none)').matches) {
         document.querySelectorAll('.proj').forEach(proj => {
             proj.addEventListener('click', () => proj.classList.toggle('open'));
         });
